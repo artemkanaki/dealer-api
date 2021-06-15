@@ -1,9 +1,21 @@
 import { DealerRepositoryPort } from '@modules/user/database/dealer.repository.interface';
 import { ConflictException } from '@exceptions';
 import { DealerAddressRepositoryPort } from '@modules/user/database/dealer-address.repository.interface';
-import { CreateDealerCommand } from './create-dealer.command';
-import { DealerEntity } from '../../domain/entities/dealer.entity';
+import { DealerEntity, DealerProps } from '../../domain/entities/dealer.entity';
 import { DealerAddressProps } from '../../domain/entities/dealer-address.entity';
+import { Email } from '@modules/user/domain/value-objects/email.value-object';
+
+export interface CreateDealerProps {
+  agencyId: string;
+  email: string;
+  address: {
+    country: string;
+    city: string;
+    postalCode: string;
+    street: string;
+    streetNumber: string;
+  }
+}
 
 export class CreateDealerService {
   constructor(
@@ -12,24 +24,25 @@ export class CreateDealerService {
     private readonly dealerAddressRepository: DealerAddressRepositoryPort,
   ) {}
 
-  async createUser(command: CreateDealerCommand): Promise<DealerEntity> {
+  async createUser(props: CreateDealerProps): Promise<DealerEntity> {
+    const dealerProps: DealerProps = {
+      address: {
+        country: props.address.country,
+        city: props.address.city,
+        postalCode: props.address.postalCode,
+        street: props.address.street,
+        streetNumber: props.address.streetNumber,
+      } as DealerAddressProps,
+      agencyId: props.agencyId,
+      email: new Email(props.email),
+      deleted: false,
+    };
     // user uniqueness guard
-    if (await this.dealerRepository.exists(command.email)) {
+    if (await this.dealerRepository.exists(dealerProps.email)) {
       throw new ConflictException('User already exists');
     }
 
-    const dealer = new DealerEntity({
-      address: {
-        country: command.country,
-        city: command.city,
-        postalCode: command.postalCode,
-        street: command.street,
-        streetNumber: command.streetNumber,
-      } as DealerAddressProps,
-      agencyId: command.agencyId,
-      email: command.email,
-      deleted: false,
-    });
+    const dealer = new DealerEntity(dealerProps);
 
     await this.dealerRepository.save(dealer);
     await this.dealerAddressRepository.save(dealer.address);

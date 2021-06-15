@@ -3,7 +3,6 @@ import { routes } from '@config/app.routes';
 import { createDealer } from '@modules/user/dealer.providers';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { DealerResponse } from '@modules/user/dtos/dealer.response.dto';
-import { CreateDealerCommand } from './create-dealer.command';
 import { CreateDealerService } from './create-dealer.service';
 import { CreateDealerRequest } from './create-dealer.request.dto';
 
@@ -28,17 +27,7 @@ export class CreateUserHttpController {
     status: HttpStatus.BAD_REQUEST,
   })
   async create(@Body() body: CreateDealerRequest): Promise<DealerResponse> {
-    const command = new CreateDealerCommand({
-      email: body.email,
-      agencyId: body.agencyId,
-      country: body.address.country,
-      city: body.address.city,
-      postalCode: body.address.postalCode,
-      street: body.address.street,
-      streetNumber: body.address.streetNumber,
-    });
-
-    const dealer = await this.createUser.createUser(command);
+    const dealer = await this.createUser.createUser(body);
 
     return new DealerResponse(dealer);
   }
