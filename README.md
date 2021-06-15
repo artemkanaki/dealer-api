@@ -197,7 +197,7 @@ Use cases are, simply said, list of actions required from an application.
 
 </details>
 
-Example file: [create-user.service.ts](src/modules/user/use-cases/create-user/create-user.service.ts)
+Example file: [create-user.service.ts](src/modules/user/use-cases/create-dealer/create-dealer.service.ts)
 
 More about services:
 
@@ -240,7 +240,7 @@ Though, violating a `Command` CQS rule and returning a bare minimum (like `ID` o
 
 **Note**: `Command` has nothing to do with [Command Pattern](https://refactoring.guru/design-patterns/command), it is just a convenient name to represent that this object invokes a CQS Command. Both `Commands` and `Queries` in this example are just simple objects with data.
 
-Example of command object: [create-user.command.ts](src/modules/user/use-cases/create-user/create-user.command.ts)
+Example of command object: [create-user.command.ts](src/modules/user/use-cases/create-dealer/create-dealer.command.ts)
 
 ### Queries
 
@@ -316,13 +316,13 @@ Entities:
 - Must be consistent on creation. Validate Entities and other domain objects on creation and throw an error on first failure. [Fail Fast](https://en.wikipedia.org/wiki/Fail-fast).
 - Avoid no-arg (empty) constructors, accept and validate all required properties through a constructor.
 - For optional properties that require some complex setting up, [Fluent interface](https://en.wikipedia.org/wiki/Fluent_interface) and [Builder Pattern](https://refactoring.guru/design-patterns/builder) can be used.
-- Make Entities partially immutable. Identify what properties shouldn't change after creation and make them `readonly` (for example `id` or `createdAt`).
+- Make Entities partially immutable. Identify what properties shouldn't change after creation and make them `readonly` (for example `id` or `created`).
 
 **Note**: A lof of people tend to create one module per entity, but this approach is not very good. Each module may have multiple entities. One thing to keep in mind is that putting entities in a single module requires those entities to have related business logic, don't group unrelated entities in one module.
 
 Example files:
 
-- [user.entity.ts](src/modules/user/domain/entities/user.entity.ts)
+- [user.entity.ts](src/modules/user/domain/entities/dealer.entity.ts)
 
 Read more:
 
@@ -352,7 +352,7 @@ All of this rules just come from the idea of creating a boundary around Aggregat
 Example files:
 
 - [aggregate-root.base.ts](src/core/base-classes/aggregate-root.base.ts) - abstract base class.
-- [user.entity.ts](src/modules/user/domain/entities/user.entity.ts) - aggregate implementations are similar to `Entities`, with some additional rules described above.
+- [user.entity.ts](src/modules/user/domain/entities/dealer.entity.ts) - aggregate implementations are similar to `Entities`, with some additional rules described above.
 
 Read more:
 
@@ -387,8 +387,8 @@ There may be different ways on implementing Domain Events, for example using som
 Examples:
 
 - [domain-events.ts](src/core/domain-events/domain-events.ts) - this class is responsible for providing publish/subscribe functionality for anyone who needs to emit or listen to events.
-- [user-created.domain-event.ts](src/modules/user/domain/events/user-created.domain-event.ts) - simple object that holds data related to published event.
-- [user-created.event-handler.ts](src/modules/domain-event-handlers/user-created.event-handler.ts) - this is an example of Domain Event Handler that executes actions and side-effects when a domain event is raised (in this case, user is created). Domain event handlers belong to Application layer.
+- [user-created.domain-event.ts](src/modules/user/domain/events/dealer-imported.domain-event.ts) - simple object that holds data related to published event.
+- [user-created.event-handler.ts](src/modules/domain-event-handlers/dealer-created.event-handler.ts) - this is an example of Domain Event Handler that executes actions and side-effects when a domain event is raised (in this case, user is created). Domain event handlers belong to Application layer.
 - [typeorm.repository.base.ts](src/infrastructure/database/base-classes/typeorm.repository.base.ts) - repository publishes all events for execution right before or right after persisting transaction.
 
 Events can be published right before or right after insert/update/delete transaction, chose any option that is better for a particular project:
@@ -660,9 +660,9 @@ Contains `Controllers` and `Request`/`Response` DTOs (can also contain `Views`, 
 
 One controller per trigger type can be used to have a more clear separation. For example:
 
-- [create-user.http.controller.ts](src/modules/user/use-cases/create-user/create-user.http.controller.ts) for http requests ([NestJS Controllers](https://docs.nestjs.com/controllers)),
-- [create-user.cli.controller.ts](src/modules/user/use-cases/create-user/create-user.cli.controller.ts) for command line interface access ([NestJS Console](https://www.npmjs.com/package/nestjs-console))
-- [create-user.event.controller.ts](src/modules/user/use-cases/create-user/create-user.event.controller.ts) for external events ([NetJS Microservices](https://docs.nestjs.com/microservices/basics)).
+- [create-user.http.controller.ts](src/modules/user/use-cases/create-dealer/create-user.http.controller.ts) for http requests ([NestJS Controllers](https://docs.nestjs.com/controllers)),
+- [create-user.cli.controller.ts](src/modules/user/use-cases/create-dealer/create-user.cli.controller.ts) for command line interface access ([NestJS Console](https://www.npmjs.com/package/nestjs-console))
+- [create-user.event.controller.ts](src/modules/user/use-cases/create-dealer/create-user.event.controller.ts) for external events ([NetJS Microservices](https://docs.nestjs.com/microservices/basics)).
 - etc.
 
 ---
@@ -679,8 +679,8 @@ Input data sent by a user.
 
 Examples:
 
-- [create-user.request.dto.ts](src/modules/user/use-cases/create-user/create-user.request.dto.ts)
-- [create.user.interface.ts](src/interface-adapters/interfaces/user/create.user.interface.ts)
+- [create-user.request.dto.ts](src/modules/user/use-cases/create-dealer/create-dealer.request.dto.ts)
+- [create.user.interface.ts](src/interface-adapters/interfaces/dealer/create-dealer.interface.ts)
 
 ### Response DTOs
 
@@ -691,8 +691,8 @@ Output data returned to a user.
 
 Examples:
 
-- [user.response.dto.ts](src/modules/user/dtos/user.response.dto.ts)
-- [user.interface.ts](src/interface-adapters/interfaces/user/user.interface.ts)
+- [user.response.dto.ts](src/modules/user/dtos/dealer.response.dto.ts)
+- [user.interface.ts](src/interface-adapters/interfaces/dealer/dealer.interface.ts)
 
 ### Additional recommendations:
 
@@ -745,7 +745,7 @@ The data flow here looks something like this: repository receives a domain `Enti
 
 ### Examples
 
-This project contains abstract repository class that allows to make basic CRUD operations: [typeorm.repository.base.ts](src/infrastructure/database/base-classes/typeorm.repository.base.ts). This base class is then extended by a specific repository, and all specific operations that an entity may need is implemented in that specific repo: [user.repository.ts](src/modules/user/database/user.repository.ts).
+This project contains abstract repository class that allows to make basic CRUD operations: [typeorm.repository.base.ts](src/infrastructure/database/base-classes/typeorm.repository.base.ts). This base class is then extended by a specific repository, and all specific operations that an entity may need is implemented in that specific repo: [user.repository.ts](src/modules/user/database/dealer.repository.ts).
 
 ## Persistence models
 
@@ -766,8 +766,8 @@ An alternative to using Persistence Models may be raw queries or some sort of a 
 
 Example files:
 
-- [user.orm-entity.ts](src/modules/user/database/user.orm-entity.ts) <- Persistence model using [ORM](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping).
-- [user.orm-mapper.ts](src/modules/user/database/user.orm-mapper.ts) <- Persistence models should also have a corresponding mapper to map from domain to persistence and back.
+- [user.orm-entity.ts](src/modules/user/database/dealer.orm-entity.ts) <- Persistence model using [ORM](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping).
+- [user.orm-mapper.ts](src/modules/user/database/dealer.orm-mapper.ts) <- Persistence models should also have a corresponding mapper to map from domain to persistence and back.
 
 Read more:
 
@@ -1148,8 +1148,8 @@ Use [OpenAPI](https://swagger.io/specification/) (Swagger) or [GraphQL](https://
 
 Example files:
 
-- [user.response.dto.ts](src/modules/user/dtos/user.response.dto.ts) - notice `@ApiProperty()` decorators. This is [NestJS Swagger](https://docs.nestjs.com/openapi/types-and-parameters) module.
-- [create-user.http.controller.ts](src/modules/user/use-cases/create-user/create-user.http.controller.ts) - notice `@ApiOperation()` and `@ApiResponse()` decorators.
+- [user.response.dto.ts](src/modules/user/dtos/dealer.response.dto.ts) - notice `@ApiProperty()` decorators. This is [NestJS Swagger](https://docs.nestjs.com/openapi/types-and-parameters) module.
+- [create-user.http.controller.ts](src/modules/user/use-cases/create-dealer/create-user.http.controller.ts) - notice `@ApiOperation()` and `@ApiResponse()` decorators.
 
 Read more:
 

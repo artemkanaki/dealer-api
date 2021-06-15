@@ -15,7 +15,10 @@
     "paths": {
       "@modules/*": ["src/modules/*"],
       "@config/*": ["src/infrastructure/configs/*"],
-      "@exceptions": ["./src/core/exceptions"]
+      "@exceptions": ["./src/core/exceptions"],
+      "@adapters/*": ["./src/interface-adapters/*"],
+      "@core/*": ["./src/core/*"],
+      "@infrastructure/*": ["./src/infrastructure/*"]
     }
   }
 }

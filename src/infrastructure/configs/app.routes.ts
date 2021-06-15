@@ -1,8 +1,8 @@
-const usersRoot = '/user';
+const dealersRoot = '/dealers';
 
 export const routes = {
   user: {
-    root: usersRoot,
-    delete: `${usersRoot}/:id`,
+    root: dealersRoot,
+    delete: `${dealersRoot}/:id`,
   },
 };

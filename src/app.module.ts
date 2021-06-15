@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from 'src/modules/user/user.module';
+import { DealerModule } from '@modules/user/dealer.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { NestEventModule } from 'nest-event';
-import { UserRepository } from '@modules/user/database/user.repository';
-import { UserOrmEntity } from '@modules/user/database/user.orm-entity';
+import { DealerRepository } from '@modules/user/database/dealer.repository';
+import { DealerOrmEntity } from '@modules/user/database/dealer.orm-entity';
 import { typeormConfig } from './infrastructure/configs/ormconfig';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeormConfig),
-    TypeOrmModule.forFeature([UserOrmEntity]),
+    TypeOrmModule.forFeature([DealerOrmEntity]),
     NestEventModule,
-    UserModule,
+    DealerModule,
   ],
   controllers: [],
-  providers: [UserRepository],
+  providers: [DealerRepository],
 })
 export class AppModule {}

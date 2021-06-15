@@ -1,9 +1,9 @@
 import { EmailService } from '@modules/email/email.service';
 import { DomainEventHandler } from 'src/core/domain-events';
-import { OnUserCreatedDomainEvent } from './user-created.event-handler';
+import { OnDealerCreatedEventHandler } from './dealer-created.event-handler';
 
 const domainEventHandlers: DomainEventHandler[] = [
-  new OnUserCreatedDomainEvent(new EmailService()),
+  new OnDealerCreatedEventHandler(new EmailService()),
 ];
 
 export function initDomainEventHandlers(): void {
