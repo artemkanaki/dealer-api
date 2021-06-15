@@ -6,7 +6,7 @@ export class CreateTables1611765824842 implements MigrationInterface {
       create table dealer (
         id uuid not null,
         agency_id varchar(50) not null,
-        email varchar(50) not null,
+        email varchar(320) not null,
           
         primary key (id),
         unique (email)
@@ -17,9 +17,9 @@ export class CreateTables1611765824842 implements MigrationInterface {
         dealer_id uuid not null,
         country char(2) not null,
         city varchar(50) not null,
-        postal_code varchar(50) not null,
-        street varchar(50) not null,
-        street_number varchar(50) not null,
+        postal_code varchar(10) not null,
+        street varchar(255) not null,
+        street_number varchar(255) not null,
         
         primary key (id),
         constraint fk_dealer_address_dealer

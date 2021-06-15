@@ -9,7 +9,7 @@ import { DealerAddressRepository } from './database/dealer-address.repository';
 
 export const createDealer = Symbol('createDealer');
 
-export const createUserProvider: Provider = {
+export const createDealerProvider: Provider = {
   provide: createDealer,
   useFactory: (dealerRepository: DealerRepository, dealerAddressRepository: DealerAddressRepository): CreateDealerService => {
     return new CreateDealerService(dealerRepository, dealerAddressRepository);
@@ -19,7 +19,7 @@ export const createUserProvider: Provider = {
 
 export const deleteDealer = Symbol('deleteDealer');
 
-export const removeUserProvider: Provider = {
+export const removeDealerProvider: Provider = {
   provide: deleteDealer,
   useFactory: (dealerRepository: DealerRepository): DeleteDealerService => {
     return new DeleteDealerService(dealerRepository);
