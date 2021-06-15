@@ -21,7 +21,7 @@ Though patterns and principles presented here are **framework/language agnostic*
   - [Application Core](#Application-Core)
   - [Application layer](#Application-layer)
     - [Application Services](#Application-Services)
-    - [Commands and Queries](#Commands-and-Queries)
+    - [Commands and Queries](#commands-and-queries-omitted-in-example-its-overkill)
     - [Ports](#Ports)
   - [Domain Layer](#Domain-Layer)
     - [Entities](#Entities)
