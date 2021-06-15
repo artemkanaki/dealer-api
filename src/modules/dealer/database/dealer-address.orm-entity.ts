@@ -1,6 +1,6 @@
 import { TypeormEntityBase } from 'src/infrastructure/database/base-classes/typeorm.entity.base';
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { DealerOrmEntity } from '@modules/user/database/dealer.orm-entity';
+import { DealerOrmEntity } from '@modules/dealer/database/dealer.orm-entity';
 
 @Entity('address')
 export class DealerAddressOrmEntity extends TypeormEntityBase {

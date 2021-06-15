@@ -1,4 +1,4 @@
-import { DealerRepositoryPort } from '@modules/user/database/dealer.repository.interface';
+import { DealerRepositoryPort } from '@modules/dealer/database/dealer.repository.interface';
 
 export class DeleteDealerService {
   constructor(private readonly dealerRepo: DealerRepositoryPort) {}

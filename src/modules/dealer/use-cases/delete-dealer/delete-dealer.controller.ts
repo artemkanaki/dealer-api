@@ -1,6 +1,6 @@
 import { Controller, Delete, Inject, Param } from '@nestjs/common';
 import { routes } from '@config/app.routes';
-import { deleteDealer } from '@modules/user/dealer.providers';
+import { deleteDealer } from '@modules/dealer/dealer.providers';
 import { DeleteDealerService } from './delete-dealer.service';
 
 @Controller()

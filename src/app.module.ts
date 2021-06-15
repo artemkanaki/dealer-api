@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { DealerModule } from '@modules/user/dealer.module';
+import { DealerModule } from '@modules/dealer/dealer.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { NestEventModule } from 'nest-event';
-import { DealerRepository } from '@modules/user/database/dealer.repository';
-import { DealerOrmEntity } from '@modules/user/database/dealer.orm-entity';
+import { DealerRepository } from '@modules/dealer/database/dealer.repository';
+import { DealerOrmEntity } from '@modules/dealer/database/dealer.orm-entity';
 import { typeormConfig } from './infrastructure/configs/ormconfig';
 
 @Module({

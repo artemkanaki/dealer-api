@@ -1,5 +1,5 @@
 import { RepositoryPort } from 'src/core/ports/repository.ports';
-import { Email } from '@modules/user/domain/value-objects/email.value-object';
+import { Email } from '@modules/dealer/domain/value-objects/email.value-object';
 import { ID } from '@core/value-objects/id.value-object';
 import { DealerAddressEntity, DealerAddressProps } from '../domain/entities/dealer-address.entity';
 

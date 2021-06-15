@@ -6,10 +6,10 @@ import {
   WhereCondition,
 } from 'src/infrastructure/database/base-classes/typeorm.repository.base';
 import { QueryParams } from 'src/core/ports/repository.ports';
-import { DealerAddressEntity, DealerAddressProps } from '@modules/user/domain/entities/dealer-address.entity';
-import { DealerAddressOrmEntity } from '@modules/user/database/dealer-address.orm-entity';
+import { DealerAddressEntity, DealerAddressProps } from '@modules/dealer/domain/entities/dealer-address.entity';
+import { DealerAddressOrmEntity } from '@modules/dealer/database/dealer-address.orm-entity';
 import { ID } from '@core/value-objects/id.value-object';
-import { DealerAddressRepositoryPort } from '@modules/user/database/dealer-address.repository.interface';
+import { DealerAddressRepositoryPort } from '@modules/dealer/database/dealer-address.repository.interface';
 import { DealerOrmEntity } from './dealer.orm-entity';
 import { DealerAddressOrmMapper } from './dealer-address.orm-mapper';
 

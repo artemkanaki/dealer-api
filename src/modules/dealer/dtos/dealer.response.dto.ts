@@ -1,8 +1,8 @@
-import { DealerEntity } from '@modules/user/domain/entities/dealer.entity';
+import { DealerEntity } from '@modules/dealer/domain/entities/dealer.entity';
 import { ModelBaseResponse } from 'src/interface-adapters/dtos/model.base.response.dto';
 import { Dealer } from 'src/interface-adapters/interfaces/dealer/dealer.interface';
 import { ApiProperty } from '@nestjs/swagger';
-import { DealerAddressResponse } from '@modules/user/dtos/dealer-address.response.dto';
+import { DealerAddressResponse } from '@modules/dealer/dtos/dealer-address.response.dto';
 
 export class DealerResponse extends ModelBaseResponse implements Dealer {
   constructor(dealer: DealerEntity) {

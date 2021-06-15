@@ -1,9 +1,9 @@
-import { DealerRepositoryPort } from '@modules/user/database/dealer.repository.interface';
+import { DealerRepositoryPort } from '@modules/dealer/database/dealer.repository.interface';
 import { ConflictException } from '@exceptions';
-import { DealerAddressRepositoryPort } from '@modules/user/database/dealer-address.repository.interface';
+import { DealerAddressRepositoryPort } from '@modules/dealer/database/dealer-address.repository.interface';
 import { DealerEntity, DealerProps } from '../../domain/entities/dealer.entity';
 import { DealerAddressProps } from '../../domain/entities/dealer-address.entity';
-import { Email } from '@modules/user/domain/value-objects/email.value-object';
+import { Email } from '@modules/dealer/domain/value-objects/email.value-object';
 
 export interface CreateDealerProps {
   agencyId: string;

@@ -1,5 +1,5 @@
 import { EmailService } from '@modules/email/email.service';
-import { DealerImportedDomainEvent } from '@modules/user/domain/events/dealer-imported.domain-event';
+import { DealerImportedDomainEvent } from '@modules/dealer/domain/events/dealer-imported.domain-event';
 import { DomainEventHandler, DomainEvents } from 'src/core/domain-events';
 
 export class OnDealerCreatedEventHandler implements DomainEventHandler {

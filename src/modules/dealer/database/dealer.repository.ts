@@ -4,14 +4,14 @@ import { Injectable, Logger } from '@nestjs/common';
 import {
   DealerEntity,
   DealerProps,
-} from '@modules/user/domain/entities/dealer.entity';
+} from '@modules/dealer/domain/entities/dealer.entity';
 import {
   TypeormRepositoryBase,
   WhereCondition,
 } from 'src/infrastructure/database/base-classes/typeorm.repository.base';
 import { QueryParams } from 'src/core/ports/repository.ports';
 import { ID } from '@core/value-objects/id.value-object';
-import { Email } from '@modules/user/domain/value-objects/email.value-object';
+import { Email } from '@modules/dealer/domain/value-objects/email.value-object';
 import { DealerOrmEntity } from './dealer.orm-entity';
 import { DealerRepositoryPort } from './dealer.repository.interface';
 import { DealerOrmMapper } from './dealer.orm-mapper';

@@ -2,7 +2,7 @@ import { CreateDealer } from '@adapters/interfaces/dealer/create-dealer.interfac
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsString, MaxLength, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
-import { CreateDealerAddressRequest } from '@modules/user/use-cases/create-dealer/create-dealer-address.request.dto';
+import { CreateDealerAddressRequest } from '@modules/dealer/use-cases/create-dealer/create-dealer-address.request.dto';
 
 export class CreateDealerRequest implements CreateDealer {
   @ApiProperty({

@@ -197,7 +197,7 @@ Use cases are, simply said, list of actions required from an application.
 
 </details>
 
-Example file: [create-user.service.ts](src/modules/user/use-cases/create-dealer/create-dealer.service.ts)
+Example file: [create-user.service.ts](src/modules/dealer/use-cases/create-dealer/create-dealer.service.ts)
 
 More about services:
 
@@ -240,7 +240,7 @@ Though, violating a `Command` CQS rule and returning a bare minimum (like `ID` o
 
 **Note**: `Command` has nothing to do with [Command Pattern](https://refactoring.guru/design-patterns/command), it is just a convenient name to represent that this object invokes a CQS Command. Both `Commands` and `Queries` in this example are just simple objects with data.
 
-Example of command object: [create-user.command.ts](src/modules/user/use-cases/create-dealer/create-dealer.command.ts)
+Example of command object: [create-user.command.ts](src/modules/dealer/use-cases/create-dealer/create-dealer.command.ts)
 
 ### Queries
 
@@ -248,7 +248,7 @@ Example of command object: [create-user.command.ts](src/modules/user/use-cases/c
 
 Queries are usually just a data retrieval operation and have no business logic involved; so, if needed, application and domain layers can be bypassed completely. Though, if some additional non-state changing logic has to be applied before returning a query response (like calculating something), it should be done in a corresponding application service.
 
-Example of query bypassing application/domain layers completely: [find-user-by-email.http.controller.ts](src/modules/user/use-cases/find-user-by-email/find-user-by-email.http.controller.ts)
+Example of query bypassing application/domain layers completely: [find-user-by-email.http.controller.ts](src/modules/dealer/use-cases/find-user-by-email/find-user-by-email.http.controller.ts)
 
 ---
 
@@ -322,7 +322,7 @@ Entities:
 
 Example files:
 
-- [user.entity.ts](src/modules/user/domain/entities/dealer.entity.ts)
+- [user.entity.ts](src/modules/dealer/domain/entities/dealer.entity.ts)
 
 Read more:
 
@@ -352,7 +352,7 @@ All of this rules just come from the idea of creating a boundary around Aggregat
 Example files:
 
 - [aggregate-root.base.ts](src/core/base-classes/aggregate-root.base.ts) - abstract base class.
-- [user.entity.ts](src/modules/user/domain/entities/dealer.entity.ts) - aggregate implementations are similar to `Entities`, with some additional rules described above.
+- [user.entity.ts](src/modules/dealer/domain/entities/dealer.entity.ts) - aggregate implementations are similar to `Entities`, with some additional rules described above.
 
 Read more:
 
@@ -387,7 +387,7 @@ There may be different ways on implementing Domain Events, for example using som
 Examples:
 
 - [domain-events.ts](src/core/domain-events/domain-events.ts) - this class is responsible for providing publish/subscribe functionality for anyone who needs to emit or listen to events.
-- [user-created.domain-event.ts](src/modules/user/domain/events/dealer-imported.domain-event.ts) - simple object that holds data related to published event.
+- [user-created.domain-event.ts](src/modules/dealer/domain/events/dealer-imported.domain-event.ts) - simple object that holds data related to published event.
 - [user-created.event-handler.ts](src/modules/domain-event-handlers/dealer-created.event-handler.ts) - this is an example of Domain Event Handler that executes actions and side-effects when a domain event is raised (in this case, user is created). Domain event handlers belong to Application layer.
 - [typeorm.repository.base.ts](src/infrastructure/database/base-classes/typeorm.repository.base.ts) - repository publishes all events for execution right before or right after persisting transaction.
 
@@ -444,7 +444,7 @@ Imagine you have a `User` entity which needs to have an `address` of a user. Usu
 
 Example files:
 
-- [address.value-object.ts](src/modules/user/domain/value-objects/address.value-object.ts)
+- [address.value-object.ts](src/modules/dealer/domain/value-objects/address.value-object.ts)
 
 Read more about Value Objects:
 
@@ -489,7 +489,7 @@ Also an alternative for creating an object may be a [type alias](https://www.typ
 
 Example files:
 
-- [email.value-object.ts](src/modules/user/domain/value-objects/email.value-object.ts)
+- [email.value-object.ts](src/modules/dealer/domain/value-objects/email.value-object.ts)
 
 Recommended to read:
 
@@ -660,9 +660,9 @@ Contains `Controllers` and `Request`/`Response` DTOs (can also contain `Views`, 
 
 One controller per trigger type can be used to have a more clear separation. For example:
 
-- [create-user.http.controller.ts](src/modules/user/use-cases/create-dealer/create-user.http.controller.ts) for http requests ([NestJS Controllers](https://docs.nestjs.com/controllers)),
-- [create-user.cli.controller.ts](src/modules/user/use-cases/create-dealer/create-user.cli.controller.ts) for command line interface access ([NestJS Console](https://www.npmjs.com/package/nestjs-console))
-- [create-user.event.controller.ts](src/modules/user/use-cases/create-dealer/create-user.event.controller.ts) for external events ([NetJS Microservices](https://docs.nestjs.com/microservices/basics)).
+- [create-user.http.controller.ts](src/modules/dealer/use-cases/create-dealer/create-user.http.controller.ts) for http requests ([NestJS Controllers](https://docs.nestjs.com/controllers)),
+- [create-user.cli.controller.ts](src/modules/dealer/use-cases/create-dealer/create-user.cli.controller.ts) for command line interface access ([NestJS Console](https://www.npmjs.com/package/nestjs-console))
+- [create-user.event.controller.ts](src/modules/dealer/use-cases/create-dealer/create-user.event.controller.ts) for external events ([NetJS Microservices](https://docs.nestjs.com/microservices/basics)).
 - etc.
 
 ---
@@ -679,7 +679,7 @@ Input data sent by a user.
 
 Examples:
 
-- [create-user.request.dto.ts](src/modules/user/use-cases/create-dealer/create-dealer.request.dto.ts)
+- [create-user.request.dto.ts](src/modules/dealer/use-cases/create-dealer/create-dealer.request.dto.ts)
 - [create.user.interface.ts](src/interface-adapters/interfaces/dealer/create-dealer.interface.ts)
 
 ### Response DTOs
@@ -691,7 +691,7 @@ Output data returned to a user.
 
 Examples:
 
-- [user.response.dto.ts](src/modules/user/dtos/dealer.response.dto.ts)
+- [user.response.dto.ts](src/modules/dealer/dtos/dealer.response.dto.ts)
 - [user.interface.ts](src/interface-adapters/interfaces/dealer/dealer.interface.ts)
 
 ### Additional recommendations:
@@ -745,7 +745,7 @@ The data flow here looks something like this: repository receives a domain `Enti
 
 ### Examples
 
-This project contains abstract repository class that allows to make basic CRUD operations: [typeorm.repository.base.ts](src/infrastructure/database/base-classes/typeorm.repository.base.ts). This base class is then extended by a specific repository, and all specific operations that an entity may need is implemented in that specific repo: [user.repository.ts](src/modules/user/database/dealer.repository.ts).
+This project contains abstract repository class that allows to make basic CRUD operations: [typeorm.repository.base.ts](src/infrastructure/database/base-classes/typeorm.repository.base.ts). This base class is then extended by a specific repository, and all specific operations that an entity may need is implemented in that specific repo: [user.repository.ts](src/modules/dealer/database/dealer.repository.ts).
 
 ## Persistence models
 
@@ -766,8 +766,8 @@ An alternative to using Persistence Models may be raw queries or some sort of a 
 
 Example files:
 
-- [user.orm-entity.ts](src/modules/user/database/dealer.orm-entity.ts) <- Persistence model using [ORM](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping).
-- [user.orm-mapper.ts](src/modules/user/database/dealer.orm-mapper.ts) <- Persistence models should also have a corresponding mapper to map from domain to persistence and back.
+- [user.orm-entity.ts](src/modules/dealer/database/dealer.orm-entity.ts) <- Persistence model using [ORM](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping).
+- [user.orm-mapper.ts](src/modules/dealer/database/dealer.orm-mapper.ts) <- Persistence models should also have a corresponding mapper to map from domain to persistence and back.
 
 Read more:
 
@@ -1062,9 +1062,9 @@ Using this approach, every time something in a service changes, we might have to
 
 It would be more logical to separate every module by components and have all the related files close together. Now if a use-case changes, those changes are usually made in a single use-case component, not everywhere across the module.
 
-This is called [The Common Closure Principle (CCP)](https://ericbackhage.net/clean-code/the-common-closure-principle/). Folder/file structure in this project uses this principle. Related files that usually change together (and are not used by anything else outside of that component) are stored close together, in a single use-case folder. Check user [use-cases](src/modules/user/use-cases) folder for examples.
+This is called [The Common Closure Principle (CCP)](https://ericbackhage.net/clean-code/the-common-closure-principle/). Folder/file structure in this project uses this principle. Related files that usually change together (and are not used by anything else outside of that component) are stored close together, in a single use-case folder. Check user [use-cases](src/modules/dealer/use-cases) folder for examples.
 
-And shared files (like domain objects, repositories etc) are stored apart since those are reused by multiple use-cases. Domain layer is isolated, and use-cases which are essentially wrappers around business logic are treated as components. This approach makes navigation and maintaining easier. Check [user](src/modules/user) folder for an example.
+And shared files (like domain objects, repositories etc) are stored apart since those are reused by multiple use-cases. Domain layer is isolated, and use-cases which are essentially wrappers around business logic are treated as components. This approach makes navigation and maintaining easier. Check [user](src/modules/dealer) folder for an example.
 
 > The aim here should to be strategic and place classes that we, from experience, know often changes together into the same component.
 
@@ -1148,8 +1148,8 @@ Use [OpenAPI](https://swagger.io/specification/) (Swagger) or [GraphQL](https://
 
 Example files:
 
-- [user.response.dto.ts](src/modules/user/dtos/dealer.response.dto.ts) - notice `@ApiProperty()` decorators. This is [NestJS Swagger](https://docs.nestjs.com/openapi/types-and-parameters) module.
-- [create-user.http.controller.ts](src/modules/user/use-cases/create-dealer/create-user.http.controller.ts) - notice `@ApiOperation()` and `@ApiResponse()` decorators.
+- [user.response.dto.ts](src/modules/dealer/dtos/dealer.response.dto.ts) - notice `@ApiProperty()` decorators. This is [NestJS Swagger](https://docs.nestjs.com/openapi/types-and-parameters) module.
+- [create-user.http.controller.ts](src/modules/dealer/use-cases/create-dealer/create-user.http.controller.ts) - notice `@ApiOperation()` and `@ApiResponse()` decorators.
 
 Read more:
 
@@ -1219,7 +1219,7 @@ To avoid manually creating data in the database, seeding is a great solution to 
 
 This project uses [typeorm-seeding](https://www.npmjs.com/package/typeorm-seeding#-using-entity-factory) package.
 
-Example file: [user.seeds.ts](src/modules/user/database/seeding/user.seeds.ts)
+Example file: [user.seeds.ts](src/modules/dealer/database/seeding/user.seeds.ts)
 
 ## Migrations
 

@@ -1,8 +1,8 @@
 import { Body, Controller, HttpStatus, Inject, Post } from '@nestjs/common';
 import { routes } from '@config/app.routes';
-import { createDealer } from '@modules/user/dealer.providers';
+import { createDealer } from '@modules/dealer/dealer.providers';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { DealerResponse } from '@modules/user/dtos/dealer.response.dto';
+import { DealerResponse } from '@modules/dealer/dtos/dealer.response.dto';
 import { CreateDealerService } from './create-dealer.service';
 import { CreateDealerRequest } from './create-dealer.request.dto';
 
